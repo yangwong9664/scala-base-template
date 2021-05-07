@@ -1,0 +1,12 @@
+bin/
+project/
+target/
+build/
+.bsp/
+.idea
+*.log
+*.iml
+*.ipr
+*.iws
+.DS_Store
+*.class
