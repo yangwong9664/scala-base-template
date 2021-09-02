@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory
 
 import scala.util.{Failure, Success, Try}
 
-trait Logging {
+object Logging {
   private val logger: Logger = Logger(LoggerFactory.getLogger("app"))
 
   def logInfo(arg: String)(implicit line: sourcecode.Line, file: sourcecode.File) = {

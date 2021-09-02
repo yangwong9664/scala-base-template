@@ -1,30 +1,20 @@
 package routes
 
-import akka.http.scaladsl.server.Route
-import akka.http.scaladsl.testkit.ScalatestRouteTest
 import org.scalamock.scalatest.MockFactory
+import org.scalatest.concurrent.ScalaFutures._
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import services.TestService
+class TestRouteSpec extends AnyWordSpec with MockFactory with Matchers {
 
-import scala.concurrent.Future
-
-class TestRouteSpec extends AnyWordSpec with MockFactory with ScalatestRouteTest with Matchers {
-
-  val mockTestService: TestService = mock[TestService]
-  val testClass: Route = new TestRoute(mockTestService).routes
+  val service = new TestService()
 
   "TestClass" should {
 
     "return test" in {
 
-      (mockTestService.test _)
-        .expects()
-        .returning(Future.successful(true))
-
-
-      Get("/hello") ~> testClass ~> check {
-        responseAs[String] shouldEqual "test"
+      whenReady(service.test()) { res =>
+        res shouldBe true
       }
     }
   }
