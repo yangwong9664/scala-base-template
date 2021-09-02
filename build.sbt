@@ -10,6 +10,8 @@ Compile / resourceDirectory := baseDirectory.value / "conf"
 Test / scalaSource := baseDirectory.value / "test"
 
 val appDependencies = Seq(
+  "org.apache.commons" % "commons-imaging" % "1.0-alpha2",
+  "commons-io" % "commons-io" % "2.11.0",
   "ch.qos.logback" % "logback-classic" % "1.2.3",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.3",
   "com.lihaoyi" %% "sourcecode" % "0.2.6",
