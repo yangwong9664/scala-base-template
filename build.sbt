@@ -1,13 +1,6 @@
 
 name := "scala-base-template"
-scalaVersion := "2.12.13"
-
-Test / parallelExecution := false
-Test / fork := true
-
-Compile/ scalaSource := baseDirectory.value / "src"
-Compile / resourceDirectory := baseDirectory.value / "conf"
-Test / scalaSource := baseDirectory.value / "test"
+scalaVersion := "2.12.14"
 
 val appDependencies = Seq(
 
@@ -26,7 +19,28 @@ val loggingDependencies = Seq(
 
 libraryDependencies ++= appDependencies ++ testDependencies ++ loggingDependencies
 
-assembly / assemblyJarName := "scala-base-template.jar"
+scalacOptions ++= Seq("-unchecked",
+  "-deprecation",
+  "-feature",
+  "-encoding","UTF-8",
+  "-explaintypes",
+  "-language:higherKinds",
+  "-Ypartial-unification",
+  "-Ywarn-infer-any",
+  "-Ywarn-unused:imports",
+  "-Ywarn-unused:implicits",
+  "-Ywarn-unused:locals",
+  "-Ywarn-unused:patvars",
+  "-Ywarn-unused:privates"
+)
 
 lazy val root = (project in file("."))
-
+  .settings(
+    Test / parallelExecution := false,
+    Test / fork := true,
+    Compile/ scalaSource := baseDirectory.value / "src",
+    Compile / resourceDirectory := baseDirectory.value / "conf",
+    Test / scalaSource := baseDirectory.value / "test",
+    assembly / assemblyJarName := "scala-simple-template.jar"
+  )
+  .enablePlugins(SbtPlugin)
