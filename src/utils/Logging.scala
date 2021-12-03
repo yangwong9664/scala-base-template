@@ -1,22 +1,22 @@
 package utils
 
 import com.typesafe.scalalogging.Logger
-import org.slf4j.LoggerFactory
+import sourcecode.{File, Line}
 
 import scala.util.{Failure, Success, Try}
 
 object Logging {
-  private val logger: Logger = Logger(LoggerFactory.getLogger("app"))
+  private val logger: Logger = Logger("scala-base-template")
 
-  def logInfo(arg: String)(implicit line: sourcecode.Line, file: sourcecode.File) = {
+  def logInfo(arg: String)(implicit line: Line, file: File) = {
     logger.info(s"message: $arg, file: ${fileName(file.value)}, line: ${line.value}")
   }
 
-  def logError(arg: String)(implicit line: sourcecode.Line, file: sourcecode.File) = {
+  def logError(arg: String)(implicit line: Line, file: File) = {
     logger.error(s"message: $arg, file: ${fileName(file.value)}, line: ${line.value}")
   }
 
-  def logWarn(arg: String)(implicit line: sourcecode.Line, file: sourcecode.File) = {
+  def logWarn(arg: String)(implicit line: Line, file: File) = {
     logger.warn(s"message: $arg, file: ${fileName(file.value)}, line: ${line.value}")
   }
 
