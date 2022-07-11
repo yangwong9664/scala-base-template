@@ -40,7 +40,6 @@ lazy val root = (project in file("."))
     Test / fork := true,
     Compile/ scalaSource := baseDirectory.value / "src",
     Compile / resourceDirectory := baseDirectory.value / "conf",
-    Test / scalaSource := baseDirectory.value / "test",
-    assembly / assemblyJarName := "scala-simple-template.jar"
+    Test / scalaSource := baseDirectory.value / "test"
   )
   .enablePlugins(SbtPlugin)
